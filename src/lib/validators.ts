@@ -1,0 +1,58 @@
+import { z } from 'zod';
+
+const experienceItemSchema = z
+  .object({
+    title: z.string().default(''),
+    organization: z.string().default(''),
+    period: z.string().default(''),
+    bullets: z.array(z.string()).default([]),
+  })
+  .passthrough();
+
+const projectItemSchema = z
+  .object({
+    title: z.string().default(''),
+    description: z.string().default(''),
+  })
+  .passthrough();
+
+const educationItemSchema = z
+  .object({
+    institution: z.string().default(''),
+    major: z.string().default(''),
+    period: z.string().default(''),
+    gpa: z.string().default(''),
+  })
+  .passthrough();
+
+const certificationItemSchema = z
+  .object({
+    title: z.string().default(''),
+    issuer: z.string().default(''),
+    period: z.string().default(''),
+    note: z.string().default(''),
+  })
+  .passthrough();
+
+export const biodataSchema = z.object({
+  name: z.string().default(''),
+  location: z.string().default(''),
+  headline: z.string().default(''),
+  summary: z.string().default(''),
+  phone: z.string().default(''),
+  email: z.string().email().or(z.literal('')).default(''),
+  linkedin: z.string().default(''),
+  github: z.string().default(''),
+  experience: z.array(experienceItemSchema).default([]),
+  projects: z.array(projectItemSchema).default([]),
+  education: z.array(educationItemSchema).default([]),
+  certifications: z.array(certificationItemSchema).default([]),
+  skills: z.array(z.string()).default([]),
+  languages: z.array(z.string()).default([]),
+  achievements: z.array(z.string()).default([]),
+});
+
+export type BiodataInput = z.infer<typeof biodataSchema>;
+
+// Alias for consumers expecting a capitalized name.
+export const BiodataSchema = biodataSchema;
