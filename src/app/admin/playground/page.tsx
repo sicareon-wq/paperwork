@@ -2,16 +2,6 @@ export const dynamic = 'force-dynamic';
 
 import { listWidgets, createWidget, deleteWidget, reorderWidget } from '@/actions/playground';
 
-async function createWidgetAction(formData: FormData) {
-  'use server';
-  await createWidget({
-    name: formData.get('name') ?? '',
-    slug: formData.get('slug') ?? '',
-    type: formData.get('type') ?? '',
-    config: {},
-  });
-}
-
 export default async function AdminPlaygroundPage() {
   const widgets = await listWidgets();
 
@@ -99,7 +89,7 @@ export default async function AdminPlaygroundPage() {
                   </div>
                 </div>
                 <div className="flex gap-1">
-                  <form action={() => { void reorderWidget(w.id, 'up'); }}>
+                  <form action={async () => { void (await reorderWidget(w.id, 'up')); }}>
                     <button
                       type="submit"
                       className="rounded-md border border-neutral-300 px-2 py-1.5 text-sm text-neutral-600 hover:bg-neutral-100 disabled:opacity-40 dark:border-neutral-700"
@@ -108,7 +98,7 @@ export default async function AdminPlaygroundPage() {
                       ↑
                     </button>
                   </form>
-                  <form action={() => { void reorderWidget(w.id, 'down'); }}>
+                  <form action={async () => { void (await reorderWidget(w.id, 'down')); }}>
                     <button
                       type="submit"
                       className="rounded-md border border-neutral-300 px-2 py-1.5 text-sm text-neutral-600 hover:bg-neutral-100 disabled:opacity-40 dark:border-neutral-700"
@@ -117,7 +107,7 @@ export default async function AdminPlaygroundPage() {
                       ↓
                     </button>
                   </form>
-                  <form action={() => { void deleteWidget(w.id); }}>
+                  <form action={async () => { void (await deleteWidget(w.id)); }}>
                     <button
                       type="submit"
                       className="rounded-md border border-red-300 px-2 py-1.5 text-sm text-red-600 hover:bg-red-50 dark:border-red-700"
