@@ -70,6 +70,21 @@ const urlField = z
   .default('')
   .refine((v) => v === '' || /^https?:\/\//i.test(v), 'Must be an http(s) URL');
 
+export const researchSchema = z.object({
+  slug: z.string().optional().default(''),
+  title: z.string().min(1, 'Title is required'),
+  excerpt: z.string().default(''),
+  content: z.string().default(''),
+  category: z.string().default(''),
+  fileUrl: urlField,
+  coverUrl: urlField,
+  published: z.boolean().default(true),
+});
+
+export type ResearchInput = z.infer<typeof researchSchema>;
+
+export const ResearchSchema = researchSchema;
+
 export const portfolioSchema = z.object({
   slug: z.string().optional().default(''),
   title: z.string().min(1, 'Title is required'),
