@@ -41,8 +41,14 @@ export const biodataSchema = z.object({
   summary: z.string().default(''),
   phone: z.string().default(''),
   email: z.string().email().or(z.literal('')).default(''),
-  linkedin: z.string().default(''),
-  github: z.string().default(''),
+  linkedin: z
+    .string()
+    .default('')
+    .refine((v) => v === '' || /^https?:\/\//i.test(v), 'Must be an http(s) URL'),
+  github: z
+    .string()
+    .default('')
+    .refine((v) => v === '' || /^https?:\/\//i.test(v), 'Must be an http(s) URL'),
   experience: z.array(experienceItemSchema).default([]),
   projects: z.array(projectItemSchema).default([]),
   education: z.array(educationItemSchema).default([]),

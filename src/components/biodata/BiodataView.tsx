@@ -50,12 +50,12 @@ export default function BiodataView({ data }: Props) {
               {data.email}
             </a>
           )}
-          {data.linkedin && (
+          {/^https?:\/\//i.test(data.linkedin) && (
             <a className="underline" href={data.linkedin} target="_blank" rel="noreferrer">
               LinkedIn
             </a>
           )}
-          {data.github && (
+          {/^https?:\/\//i.test(data.github) && (
             <a className="underline" href={data.github} target="_blank" rel="noreferrer">
               GitHub
             </a>
