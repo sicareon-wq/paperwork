@@ -62,3 +62,28 @@ export type BiodataInput = z.infer<typeof biodataSchema>;
 
 // Alias for consumers expecting a capitalized name.
 export const BiodataSchema = biodataSchema;
+
+export { slugify } from '@/lib/slugify';
+
+const urlField = z
+  .string()
+  .default('')
+  .refine((v) => v === '' || /^https?:\/\//i.test(v), 'Must be an http(s) URL');
+
+export const portfolioSchema = z.object({
+  slug: z.string().optional().default(''),
+  title: z.string().min(1, 'Title is required'),
+  summary: z.string().default(''),
+  description: z.string().default(''),
+  category: z.string().default(''),
+  imageUrl: z.string().default(''),
+  demoUrl: urlField,
+  repoUrl: urlField,
+  tags: z.array(z.string()).default([]),
+  featured: z.boolean().default(false),
+});
+
+export type PortfolioInput = z.infer<typeof portfolioSchema>;
+
+// Alias for consumers expecting a capitalized name.
+export const PortfolioSchema = portfolioSchema;
