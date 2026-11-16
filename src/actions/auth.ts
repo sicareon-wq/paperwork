@@ -20,12 +20,21 @@ export async function loginAction(_prev: unknown, formData: FormData) {
     return { error: 'Invalid input' };
   }
   const user = await db.user.findUnique({ where: { email: parsed.data.email } });
-  if (!user || !(await verifyPassword(parsed.data.password, user.password))) {
+  const hashToCompare = user?.password ?? '$2a$10$N4hMMsyRFW5rE1/8tC2QfeC5eeX0KMn0N8NJvO9HerjN3duyYQz1i';
+  const ok = await verifyPassword(parsed.data.password, hashToCompare);
+  if (!user || !ok) {
     return { error: 'Invalid credentials' };
   }
   await createSession(user.id);
   const next = (formData.get('next') as string) || '/admin';
-  redirect(next.startsWith('/') && !next.startsWith('//') ? next : '/admin');
+  const safeNext =
+    typeof next === 'string' &&
+    next.startsWith('/') &&
+    !next.startsWith('//') &&
+    !next.includes('\\')
+      ? next
+      : '/admin';
+  redirect(safeNext);
 }
 
 export async function logoutAction() {

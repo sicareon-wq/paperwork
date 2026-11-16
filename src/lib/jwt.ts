@@ -6,7 +6,9 @@ export interface SessionPayload {
 }
 
 function secret() {
-  return new TextEncoder().encode(process.env.JWT_SECRET ?? 'dev-secret-change-in-prod-32chars-minimum!!');
+  const s = process.env.JWT_SECRET;
+  if (!s) throw new Error('JWT_SECRET is required');
+  return new TextEncoder().encode(s);
 }
 
 export async function signToken(payload: SessionPayload, expiresIn = '7d'): Promise<string> {
@@ -19,7 +21,7 @@ export async function signToken(payload: SessionPayload, expiresIn = '7d'): Prom
 
 export async function verifyToken(token: string): Promise<SessionPayload | null> {
   try {
-    const { payload } = await jwtVerify(token, secret());
+    const { payload } = await jwtVerify(token, secret(), { algorithms: ['HS256'] });
     if (typeof payload.userId !== 'string') return null;
     return {
       userId: payload.userId,
