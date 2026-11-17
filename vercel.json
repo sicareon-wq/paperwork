@@ -1,18 +1,8 @@
 {
-  "name": "paperwork",
   "version": 2,
   "framework": "nextjs",
   "buildCommand": "next build",
   "devCommand": "next dev",
   "installCommand": "npm install",
-  "regions": ["iad1"],
-  "env": {
-    "DATABASE_URL": "@database-url",
-    "JWT_SECRET": "@jwt-secret",
-    "ADMIN_EMAIL": "@admin-email",
-    "ADMIN_PASSWORD": "@admin-password",
-    "RESEND_API_KEY": "@resend-api-key",
-    "CONTACT_TO_EMAIL": "@contact-to-email",
-    "NEXT_PUBLIC_SITE_URL": "@site-url"
-  }
+  "regions": ["iad1"]
 }

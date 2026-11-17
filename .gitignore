@@ -42,3 +42,4 @@ playwright-report/
 # dev uploads (regenerated locally)
 public/uploads/*
 !public/uploads/.gitkeep
+.env*
