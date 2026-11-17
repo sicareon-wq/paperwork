@@ -1,5 +1,10 @@
 import Link from 'next/link';
 
+export const metadata = {
+  title: 'Paperwork - Home',
+  description: 'Digital paperwork portfolio by Muhammad Kasyfu Najib. Explore projects, research, and CV.',
+};
+
 const links = [
   { href: '/portfolio', label: 'Portfolio' },
   { href: '/research', label: 'Research' },

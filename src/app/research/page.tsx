@@ -1,5 +1,10 @@
 export const dynamic = 'force-dynamic';
 
+export const metadata = {
+  title: 'Paperwork - Research',
+  description: 'Notes, case studies, and deep dives from Muhammad Kasyfu Najib. Explore research and analysis.',
+};
+
 import Link from 'next/link';
 import { listResearch } from '@/actions/research';
 import ResearchCard from '@/components/research/ResearchCard';

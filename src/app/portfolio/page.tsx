@@ -1,5 +1,10 @@
 export const dynamic = 'force-dynamic';
 
+export const metadata = {
+  title: 'Paperwork - Portfolio',
+  description: 'Selected work and case studies from Muhammad Kasyfu Najib. View digital projects and portfolio items.',
+};
+
 import Link from 'next/link';
 import { listPortfolios } from '@/actions/portfolio';
 import PortfolioCard from '@/components/portfolio/PortfolioCard';

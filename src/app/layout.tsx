@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from 'sonner';
 import './globals.css';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/Footer';
+import { PageTransitions } from '@/components/layout/PageTransitions';
 
 export const metadata: Metadata = {
   title: 'Paperwork',
@@ -13,7 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <PageTransitions>{children}</PageTransitions>
+            <Footer />
+          </div>
           <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>

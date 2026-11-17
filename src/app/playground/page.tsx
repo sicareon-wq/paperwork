@@ -1,5 +1,10 @@
 export const dynamic = 'force-dynamic';
 
+export const metadata = {
+  title: 'Paperwork - Playground',
+  description: 'Interactive tools and widgets by Muhammad Kasyfu Najib. Compute IPv4 networks and explore technical demos.',
+};
+
 import { listWidgets } from '@/actions/playground';
 import SubnetCalculator from '@/components/playground/SubnetCalculator';
 

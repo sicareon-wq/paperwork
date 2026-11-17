@@ -3,6 +3,11 @@ import { currentCvInfo } from '@/actions/cv';
 
 export const dynamic = 'force-dynamic';
 
+export const metadata = {
+  title: 'Paperwork - CV',
+  description: 'Download the full CV/Resume of Muhammad Kasyfu Najib. Professional experience, education, and skills document.',
+};
+
 export default async function CvPage() {
   const info = await currentCvInfo();
 

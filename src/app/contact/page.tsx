@@ -1,5 +1,10 @@
 import { ContactForm } from '@/components/contact/ContactForm';
 
+export const metadata = {
+  title: 'Paperwork - Contact',
+  description: 'Get in touch with Muhammad Kasyfu Najib. Contact form to reach out for collaboration, inquiries, or professional connections.',
+};
+
 export default function ContactPage() {
   return (
     <main
