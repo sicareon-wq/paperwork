@@ -43,6 +43,6 @@ test('admin login and CRUD flow', async ({ page }) => {
   await page.goto('/admin/portfolio');
   await expect(page.locator('text=' + newTitle)).toBeVisible();
   await page.once('dialog', (d) => d.accept());
-  await page.locator('text=' + newTitle).locator('xpath=..').getByRole('button', { name: 'Delete' }).click();
+  await page.locator('text=' + newTitle).first().locator('xpath=../..').getByRole('button', { name: 'Delete' }).click();
   await expect(page.locator('text=' + newTitle)).not.toBeVisible();
 });
