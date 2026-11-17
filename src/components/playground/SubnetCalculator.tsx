@@ -55,13 +55,13 @@ export default function SubnetCalculator({ initial }: SubnetCalculatorProps) {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-4">
-          <div className="relative">
-            <label htmlFor="ip" className="absolute start-0 top-1/2 -translate-y-1/2 whitespace-nowrap px-2 text-xs font-medium text-neutral-500">
+          <div className="space-y-1">
+            <label htmlFor="ip" className="block text-xs font-medium text-neutral-500">
               IP address
             </label>
             <input
               id="ip"
-              className="w-full rounded-lg border border-neutral-300 bg-white/80 py-2.5 pl-8 pr-3 text-sm outline-none transition placeholder:text-neutral-400 focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/20 dark:border-neutral-700 dark:bg-neutral-900/70 dark:focus:border-neutral-100 dark:focus:ring-neutral-100/30"
+              className="w-full rounded-lg border border-neutral-300 bg-white/80 px-3 py-2.5 text-sm outline-none transition placeholder:text-neutral-400 focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/20 dark:border-neutral-700 dark:bg-neutral-900/70 dark:focus:border-neutral-100 dark:focus:ring-neutral-100/30"
               placeholder="e.g. 192.168.1.0"
               value={ip}
               onChange={(e) => setIp(e.target.value)}
