@@ -35,8 +35,7 @@ test('admin login and CRUD flow', async ({ page }) => {
   await page.fill('input[name="summary"]', 'A test summary.');
   await page.fill('textarea[name="description"]', 'A test description.');
   await page.getByRole('button', { name: 'Create' }).click();
-  await page.waitForURL(/admin\/portfolio/);
-  await page.goto('/admin/portfolio');
+  await page.waitForURL((url) => url.pathname === '/admin/portfolio');
   await expect(page.locator('text=' + newTitle)).toBeVisible();
 
   // Delete portfolio
