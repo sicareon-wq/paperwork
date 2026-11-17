@@ -89,7 +89,7 @@ export default async function AdminPlaygroundPage() {
                   </div>
                 </div>
                 <div className="flex gap-1">
-                  <form action={async () => { void (await reorderWidget(w.id, 'up')); }}>
+                  <form action={async () => { 'use server'; void (await reorderWidget(w.id, 'up')); }}>
                     <button
                       type="submit"
                       className="rounded-md border border-neutral-300 px-2 py-1.5 text-sm text-neutral-600 hover:bg-neutral-100 disabled:opacity-40 dark:border-neutral-700"
@@ -98,7 +98,7 @@ export default async function AdminPlaygroundPage() {
                       ↑
                     </button>
                   </form>
-                  <form action={async () => { void (await reorderWidget(w.id, 'down')); }}>
+                  <form action={async () => { 'use server'; void (await reorderWidget(w.id, 'down')); }}>
                     <button
                       type="submit"
                       className="rounded-md border border-neutral-300 px-2 py-1.5 text-sm text-neutral-600 hover:bg-neutral-100 disabled:opacity-40 dark:border-neutral-700"
@@ -107,7 +107,7 @@ export default async function AdminPlaygroundPage() {
                       ↓
                     </button>
                   </form>
-                  <form action={async () => { void (await deleteWidget(w.id)); }}>
+                  <form action={async () => { 'use server'; void (await deleteWidget(w.id)); }}>
                     <button
                       type="submit"
                       className="rounded-md border border-red-300 px-2 py-1.5 text-sm text-red-600 hover:bg-red-50 dark:border-red-700"
