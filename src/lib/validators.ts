@@ -85,6 +85,23 @@ export type ResearchInput = z.infer<typeof researchSchema>;
 
 export const ResearchSchema = researchSchema;
 
+export const contactSchema = z.object({
+  name: z.string().trim().min(1, 'Name is required').max(120, 'Name must be under 120 characters'),
+  email: z
+    .string()
+    .trim()
+    .min(1, 'Email is required')
+    .email('Invalid email address')
+    .max(320, 'Email must be under 320 characters'),
+  subject: z.string().trim().min(1, 'Subject is required').max(200, 'Subject must be under 200 characters'),
+  message: z.string().trim().min(1, 'Message is required').max(5000, 'Message must be under 5000 characters'),
+});
+
+export type ContactFormValues = z.infer<typeof contactSchema>;
+
+// Alias for consumers expecting a capitalized name.
+export const ContactSchema = contactSchema;
+
 export const portfolioSchema = z.object({
   slug: z.string().optional().default(''),
   title: z.string().min(1, 'Title is required'),
